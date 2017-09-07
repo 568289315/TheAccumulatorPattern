@@ -7,8 +7,11 @@ A subsequent module lets you practice the ACCUMULATOR pattern in another classic
    IN GRAPHICS:   x = x + pixels
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Lanxi Wang.
+
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
+import rosegraphics as rg
+import math
 
 
 # ----------------------------------------------------------------------
@@ -31,7 +34,7 @@ def main():
 def test_sum_more_cosines():
     """ Tests the   sum_more_cosines   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # DONE: 2. Implement this TEST function.
     #   It TESTS the  sum_more_cosines  function defined below.
     #   Include at least **   3   ** tests (we wrote one for you).
     #
@@ -57,9 +60,17 @@ def test_sum_more_cosines():
     print('--------------------------------------------------')
 
     # Test 1:
-    expected = 0.13416  # This is APPROXIMATELY the correct answer.
-    answer = sum_more_cosines(0, 3)
+    expected = -1.77612
+    answer = sum_more_cosines(2,5)
     print('Test 1 expected:', expected, '(approximately)')
+    print('       actual:  ', answer)
+    expected = 0.66230
+    answer = sum_more_cosines(5,18)
+    print('Test 2 expected:', expected, '(approximately)')
+    print('       actual:  ', answer)
+    expected =-1.14180
+    answer = sum_more_cosines(7,10)
+    print('Test 3 expected:', expected, '(approximately)')
     print('       actual:  ', answer)
 
     # ------------------------------------------------------------------
@@ -83,7 +94,7 @@ def sum_more_cosines(m, n):
          which is approximately 0.02082.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #   That is called TEST-DRIVEN DEVELOPMENT (TDD).
     #
@@ -94,6 +105,13 @@ def sum_more_cosines(m, n):
     #   Just   range(blah)   where blah is a single variable.
     #   Reason: To ensure that you get more practice using variables.
     # ------------------------------------------------------------------
+    sum = 0
+    for k in range(n-m+1):
+        sum = sum + math.cos(k+m)
+    return sum
+
+
+
 
 
 def test_count_sines_from():
@@ -112,10 +130,32 @@ def test_count_sines_from():
     print('--------------------------------------------------')
 
     # Test 1:
-    expected = 5
-    answer = count_sines_from(3, 9)
+    expected = 2
+    answer = count_sines_from(7,10)
     print('Test 1 expected:', expected)
     print('       actual:  ', answer)
+    expected = 9
+    answer = count_sines_from(3,14)
+    print('Test 2 expected:', expected)
+    print('       actual:  ', answer)
+    expected = 10
+    answer = count_sines_from(6,21)
+    print('Test 3 expected:', expected)
+    print('       actual:  ', answer)
+    expected = 2
+    answer = count_sines_from(5,7)
+    print('Test 4 expected:', expected)
+    print('       actual:  ', answer)
+    expected = 5
+    answer = count_sines_from(15,22)
+    print('Test 5 expected:', expected)
+    print('       actual:  ', answer)
+    expected = 7
+    answer = count_sines_from(22,30)
+    print('Test 6 expected:', expected)
+    print('       actual:  ', answer)
+
+
 
     # ------------------------------------------------------------------
     # TO DO: 4 (continued).
@@ -150,6 +190,11 @@ def count_sines_from(m, n):
     #   you must NOT use the 2 or 3-parameter versions
     #   of the RANGE expression, if you happen to know them.
     # ------------------------------------------------------------------
+    count = 0
+    for k in range(n-m+1):
+        if math.sin(k+m)<=0.5:
+            count = count + 1
+    return count
 
 
 def test_count_sines_vs_cosines():
