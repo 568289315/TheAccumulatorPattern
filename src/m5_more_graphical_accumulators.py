@@ -136,9 +136,31 @@ def test_draw_circles_from_rectangle():
     print('Testing the  draw_circles_from_rectangle  function:')
     print('  See the graphics windows that pop up.')
     print('--------------------------------------------------')
+    title = 'Tests 1 and 2 of DRAW_CIRCLES_FROM_RECTANGLE'
+    window1 = rg.RoseWindow(1200,1200,title)
+
+    rectangle = rg.Rectangle(rg.Point(300,400),rg.Point(700,520))
+    rectangle.fill_color = 'blue'
+    rectangle.outline_color = 'yellow'
+    draw_circles_from_rectangle(5,7,rectangle,window1)
+    rectangle = rg.Rectangle(rg.Point(200,500),rg.Point(500,350))
+    rectangle.fill_color = 'gray'
+    rectangle.outline_color = 'purple'
+    draw_circles_from_rectangle(8,5,rectangle,window1)
+    window1.close_on_mouse_click()
+
+    title = 'Test 3 of DRAW_CIRCLES_FROM_RECTANGLE'
+    window2 = rg.RoseWindow(1200,1200,title)
+
+    rectangle = rg.Rectangle(rg.Point(500,400),rg.Point(700,500))
+    rectangle.fill_color = 'red'
+    rectangle.outline_color = 'pink'
+    draw_circles_from_rectangle(2,6,rectangle,window2)
+    window2.close_on_mouse_click()
+
 
     # ------------------------------------------------------------------
-    # TODO: 3. Implement this TEST function.
+    # DONE: 3. Implement this TEST function.
     #   It TESTS the  draw_circles_from_rectangle  function
     #   defined below.  Include at least **   3   ** tests, of which
     #      ***  at least TWO tests are on ONE window and
@@ -229,7 +251,7 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
 
 
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE: 4. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
