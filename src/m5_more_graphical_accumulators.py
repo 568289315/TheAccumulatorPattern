@@ -201,18 +201,18 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
         y = center.y
         center2 = rg.Point(x,y)
         x = x-height
-        circle = rg.Circle(center2,height/2)
+        circle = rg.Circle(center2,(height/2))
         circle.fill_color = rectangle.fill_color
         circle.attach_to(window)
 
     window.render()
 
 
-    y = center.y -height/2-width /2
+    y = center.y - height/2 - width /2
     for _ in range (n):
         x = center.x
         center2 = rg.Point(x,y)
-        circle = rg.Circle(center2,width/2)
+        circle = rg.Circle(center2,(width/2))
         y = y-width
         circle.outline_color = rectangle.outline_color
         circle.attach_to(window)
