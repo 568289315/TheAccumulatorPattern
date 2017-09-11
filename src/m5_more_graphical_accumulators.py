@@ -9,8 +9,8 @@ Additionally, it emphasizes that you must
 before you can implement a solution to the problem in Python. 
   
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Lanxi Wang.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -97,8 +97,10 @@ def draw_squares_from_circle(n, circle, window):
       :type circle: rg.Circle
       :type window: rg.RoseWindow
     """
+
+
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -111,6 +113,20 @@ def draw_squares_from_circle(n, circle, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    circle.attach_to(window)
+    x = circle.center.x
+    y = circle.center.y
+    for _ in range(n):
+        center = rg.Point(x,y)
+        x = x + circle.radius
+        y = y + circle.radius
+        square = rg.Square(center,circle.radius*2)
+        square.attach_to(window)
+    window.render()
+
+
+
+
 
 
 def test_draw_circles_from_rectangle():
@@ -175,6 +191,43 @@ def draw_circles_from_rectangle(m, n, rectangle, window):
       :type rectangle: rg.Rectangle
       :type window: rg.RoseWindow
     """
+    rectangle.attach_to(window)
+    height = rectangle.get_height()
+    x = rectangle.corner_1.x-height/2
+    center = rectangle.get_center()
+    width = rectangle.get_width()
+
+    for _ in range(m):
+        y = center.y
+        center2 = rg.Point(x,y)
+        x = x-height
+        circle = rg.Circle(center2,height/2)
+        circle.fill_color = rectangle.fill_color
+        circle.attach_to(window)
+
+    window.render()
+
+
+    y = center.y -height/2-width /2
+    for _ in range (n):
+        x = center.x
+        center2 = rg.Point(x,y)
+        circle = rg.Circle(center2,width/2)
+        y = y-width
+        circle.outline_color = rectangle.outline_color
+        circle.attach_to(window)
+    window.render()
+
+
+
+
+
+
+
+
+
+
+
     # ------------------------------------------------------------------
     # TODO: 4. Implement and test this function.
     #          Tests have been written for you (above).
@@ -268,7 +321,7 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
       :type window: rg.RoseWindow
       """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE: 5. Implement and test this function.
     #          Tests have been written for you (above).
     #
     # CONSIDER using the ACCUMULATOR IN GRAPHICS pattern,
@@ -281,6 +334,32 @@ def draw_lines_from_rectangles(rectangle1, rectangle2, n, window):
     #          ** FIRST DO A CONCRETE EXAMPLE BY HAND! **
     ####################################################################
     # ------------------------------------------------------------------
+    rectangle1.attach_to(window)
+    rectangle2.attach_to(window)
+    center1 = rectangle1.get_center()
+    center2 = rectangle2.get_center()
+    width = rectangle1.get_width()
+    height = rectangle1.get_height()
+    x1 =center1.x
+    y1 = center1.y
+    x2 = center2.x
+    y2 = center2.y
+
+    for _ in range(n):
+        start = rg.Point(x1,y1)
+        end = rg.Point(x2,y2)
+        line = rg.Line(start,end)
+        x1 = x1-width/2
+        y1=y1+height/2
+        x2 = x2-width/2
+        y2 = y2+height/2
+        if _ % 2 == 0:
+            line.color = rectangle1.outline_color
+        else:
+            line.color = rectangle2.outline_color
+        line.attach_to(window)
+    window.render()
+
 
 
 # ----------------------------------------------------------------------
